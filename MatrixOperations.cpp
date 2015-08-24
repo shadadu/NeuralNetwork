@@ -115,10 +115,9 @@ public:
 		double det = 1.0;
 		for (size_t i = 0; i < d1; i++)
 		{
-			for (size_t j = 0; j < d2; j++)
-			{
-				det = det*(elements[i][j]);
-			}
+			
+				det = det*(elements[i][i]);
+			
 		}
 		return det;
 	}
