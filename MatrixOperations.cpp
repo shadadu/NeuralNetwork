@@ -27,16 +27,16 @@ public:
 		vector<vector<double>> p(d1, vector<double>(d2, 0));
 		this->elements = p;
 
-		for (size_t i = 0; i < d1; i++)
+		for (size_t i = 0; i < elements.size(); i++)
 		{
-			for (size_t j = 0; j < d2; j++)
+			for (size_t j = 0; j < elements[0].size(); j++)
 			{
 				(*this).elements[i][j] = M.elements[i][j];
 			}
 		}
 	}
 
-	matrix(double x, double y)
+	matrix(int x, int y)
 	{
 		d1 = x; d2 = y;
 		vector<vector<double>> p(x, vector<double>(y, 0));
@@ -45,10 +45,11 @@ public:
 
 	void display()
 	{
-		for (size_t j = 0; j < d2; j++)
+		for (size_t j = 0; j < elements[0].size(); j++)
 		{
 			size_t t = 0;
-			while (t < d2)
+			
+			while (t < elements.size())
 			{
 				cout << elements[t][j] << '\t';
 				t++;
@@ -57,15 +58,13 @@ public:
 		}
 	}
 
-	void SetElement(int r, int c, double value)
+	void SetElement(size_t r, size_t c, double value)
 	{
-		/* + check indexes within bounds */
 		elements[r][c] = value;
 	}
 
-	double GetElement(int r, int c)
+	double GetElement(size_t r, size_t c)
 	{
-		/* + check indexes within bounds */
 		return elements[r][c];
 	}
 
@@ -78,7 +77,7 @@ public:
 		return arr;
 	}
 
-	matrix RowOperation(double piv, int i, int r, int j)
+	matrix RowOperation(double piv, size_t i, size_t r, size_t j)
 	{
 		matrix temp(*this);
 		double LeadElement = elements[j][r];
@@ -90,13 +89,12 @@ public:
 	}
 
 
-	matrix Pivot(int i, int r)
+	matrix Pivot(size_t i, size_t r)
 	{
 		matrix temp;
 		double piv = this->elements[i][r];
 		for (int j = i + 1; j < d1; j++)
-		{   
-			
+		{   		
 			temp = RowOperation(piv, i, r, j);
 		}
 		return temp;
@@ -113,11 +111,9 @@ public:
 			r++;
 		}
 		double det = 1.0;
-		for (size_t i = 0; i < d1; i++)
-		{
-			
-				det = det*(elements[i][i]);
-			
+		for (size_t i = 0; i < elements.size(); i++)
+		{		
+				det = det*(this->elements[i][i]);
 		}
 		return det;
 	}
@@ -130,6 +126,7 @@ public:
 			for (size_t j = 0; j < d2; j++)
 			{
 				elements[i][j] = s*elements[i][j];
+
 			}
 		}
 		return *this;
@@ -151,7 +148,7 @@ matrix MMultiply(matrix & A, matrix & B)
 	int nrowB = dimB[0];
 	int ncolB = dimB[1];
 
-	/* + check for matrix inner dimension agree to allow matrix multiplication*/
+	/* error checking for matrix inner dimension agree to allow matrix multiplication*/
 	
 	matrix P(nrowA, ncolB);
 	
@@ -166,9 +163,10 @@ matrix MMultiply(matrix & A, matrix & B)
 			}
 			P.elements[i][j] = sum;
 		}		
-	}	
+	}
 	
 	return P;
+
 }
 
 
@@ -182,13 +180,15 @@ matrix MAdd(matrix & A, matrix & B)
 	int nrowB = dimB[0];
 	int ncolB = dimB[1];
 
+	
 	matrix P(nrowA, ncolB);
 
 	for (size_t i = 0; i < nrowA; i++)
 	{
 		for (size_t j = 0; j < ncolB; j++)
 		{
-			P.elements[i][j] = A.elements[i][j] + B.elements[i][j];	
+			P.elements[i][j] = A.elements[i][j] + B.elements[i][j];
+		
 		}
 	}
 
@@ -196,6 +196,13 @@ matrix MAdd(matrix & A, matrix & B)
 
 }
 
+
+int SingleLayer()
+{
+
+
+	return 0;
+}
 
 void main()
 {
