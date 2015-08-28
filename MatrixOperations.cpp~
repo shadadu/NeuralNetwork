@@ -76,7 +76,7 @@ public:
 
 		return arr;
 	}
-/*
+
 	matrix RowOperation(double piv, size_t i, size_t r, size_t j)
 	{
 		matrix temp(*this);
@@ -87,7 +87,7 @@ public:
 		}
 		return temp;
 	}
-*/
+
 
 	matrix Pivot(size_t i, size_t r)
 	{
@@ -99,12 +99,10 @@ public:
 		}
 		return temp;
 	}
-	
-	/* Find the determinant of matrix using Gaussian Elimination */
-/*
+
 	double detGaussElim()
 	{
-		
+		/* Find the determinant of matrix using Gaussian Elimination */
 		matrix temp;
 		int r = 0;
 		for (int i = 0; i < d1; i++)
@@ -119,7 +117,7 @@ public:
 		}
 		return det;
 	}
-*/
+
 	matrix ScalarMultiply(double s)
 	{
 
@@ -199,6 +197,12 @@ matrix MAdd(matrix & A, matrix & B)
 }
 
 
+int SingleLayer()
+{
+
+
+	return 0;
+}
 
 void main()
 {
