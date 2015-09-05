@@ -77,6 +77,7 @@ int *  matrix::dim()
 	int ncol = elements.size();
 	dimArray[0] = nrow;
 	dimArray[1] = ncol;
+
 	return dimArray;
 }
 
@@ -94,7 +95,6 @@ matrix matrix::RowOperation(double piv, size_t i, size_t r, size_t j)
 {
 	if (elements[j][r] == 0) return *this;
 	vector<double> temp(elements[i].begin(), elements[i].end());
-	cout << "size temp " << temp.size() << endl;
 	double factor = static_cast<double>(elements[j][r]) / piv;
 	for (size_t k = r; k < temp.size(); k++)
 	{
@@ -108,7 +108,6 @@ matrix matrix::Pivot(size_t i, size_t r)
 {
 	matrix temp;
 	double piv = this->elements[i][r];
-	cout << "piv: " << piv << endl;
 	for (size_t j = i + 1; j < elements[0].size(); j++)
 	{
 		temp = RowOperation(piv, i, r, j);
@@ -148,7 +147,6 @@ matrix matrix::ScalarMultiply(double s)
 		for (size_t j = 0; j < elements[0].size(); j++)
 		{
 			elements[i][j] = s*elements[i][j];
-
 		}
 	}
 	return *this;
@@ -186,7 +184,6 @@ matrix MMultiply(matrix & A, matrix & B)
 
 matrix MAdd(matrix & A, matrix & B)
 {
-	/* check A.d1 == B.d1 and A.d2 == B.d2 */
 	if (A.d1 != B.d1 && A.d2 != B.d2)
 	{
 		error("matrix dimensions must be equal\n");

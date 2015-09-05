@@ -1,20 +1,12 @@
 #ifndef MATRIX_H_INCLUDED
 #define MATRIX_H_INCLUDED
-
 #include <vector>
 #include <string>
 
 using namespace std;
-/*
-void error(char * msg)
-{
-perror(msg);
-system("pause");
-}
-*/
+
 class matrix
 {
-
 	int d1, d2;  //dimensions
 	vector<vector<double>> elements;
 	int dimArray[2];
@@ -37,9 +29,6 @@ public:
 	friend matrix MAdd(matrix &, matrix &);
 
 };
-
-
-
 
 
 #endif
