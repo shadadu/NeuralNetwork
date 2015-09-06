@@ -24,6 +24,8 @@ matrix::matrix(){
 	dimArray[1] = d2;
 }
 
+matrix::~matrix(){}
+
 matrix::matrix(matrix & M)
 {
 	int * passedSize = M.dim();

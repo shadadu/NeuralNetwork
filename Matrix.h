@@ -13,6 +13,7 @@ class matrix
 
 public:
 	matrix();
+	~matrix();
 	matrix(matrix & M);
 	matrix(int x, int y);
 	void display();
