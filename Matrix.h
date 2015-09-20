@@ -25,6 +25,7 @@ public:
 	matrix Pivot(size_t i, size_t r);
 	double detGaussElim();
 	matrix ScalarMultiply(double s);
+	matrix Transpose();
 
 	friend matrix MMultiply(matrix &, matrix &);
 	friend matrix MAdd(matrix &, matrix &);

@@ -154,6 +154,44 @@ matrix matrix::ScalarMultiply(double s)
 	return *this;
 }
 
+matrix matrix::Transpose()
+{
+	matrix Q(d2, d1);
+
+	size_t k = 0;
+	for (size_t r = 0; r < elements.size(); r++)
+	{	
+		
+		vector<double>::const_iterator first = this->elements[r].begin() + k;
+		vector<double>::const_iterator last = this->elements[r].end();
+		vector<double> temp(first, last);
+		vector<double>::const_iterator it = temp.begin();
+		size_t c = k;
+		while (it != temp.end())
+		{
+			Q.elements[c][r] = *it;
+
+			if (r!=c)
+			Q.elements[r][c] = this->elements[c][r];
+
+			c++;
+			it++;
+		}
+		k++;
+
+		/*
+		for (size_t c = r; c < elements[0].size(); c++)
+		{
+			Q.elements[c][r] = this->elements[r][c];	
+		}
+		*/
+		
+
+	}
+
+	return Q;
+}
+
 
 matrix MMultiply(matrix & A, matrix & B)
 {

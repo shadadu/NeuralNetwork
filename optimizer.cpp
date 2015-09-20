@@ -26,20 +26,14 @@ void main()
 	M.SetElement(2, 2, 1);
 	M.display();
 
-	double detM = M.detGaussElim();
-	cout << "det (M) = " << detM << endl;
+	cout << "that was M\n";
 
-	matrix Q(M);
+	matrix P = M.Transpose();
 
-	matrix Ans = MMultiply(M, Q);
-
-	Ans.display();
+	P.display();
 
 
-	matrix P(2, 2);
-
-
-	MMultiply(P, Q);
+	
 
 
 
