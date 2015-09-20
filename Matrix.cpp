@@ -162,9 +162,7 @@ matrix matrix::Transpose()
 	for (size_t r = 0; r < elements.size(); r++)
 	{	
 		
-		vector<double>::const_iterator first = this->elements[r].begin() + k;
-		vector<double>::const_iterator last = this->elements[r].end();
-		vector<double> temp(first, last);
+		vector<double> temp(this->elements[r].begin() + k, this->elements[r].end());
 		vector<double>::const_iterator it = temp.begin();
 		size_t c = k;
 		while (it != temp.end())
