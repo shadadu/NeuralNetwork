@@ -32,12 +32,17 @@ void main()
 
 	P.display();
 
+	matrix  R = MConcat(P, M);
 
+	cout << "now" << endl;
+
+
+	//int * sz = (*r).dim();
+	//cout << "size of R " << sz[0] << " " << sz[1] << endl;
+
+	R.display();
 	
-
-
-
-	
+		
 
 	system("pause");
 

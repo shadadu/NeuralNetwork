@@ -41,6 +41,23 @@ matrix::matrix(matrix & M)
 	}
 }
 
+matrix matrix::operator=(const matrix & A)
+{
+	if (this == & A)
+	{
+		return *this;
+	}
+	this->d1 = A.d1;
+	this->d2 = A.d2;
+	for (size_t i = 0; i < A.elements.size(); i++)
+	{
+		this->elements[i] = A.elements[i];
+	}
+
+	return *this;
+}
+
+
 matrix::matrix(int x, int y)
 {
 	d1 = x; d2 = y;
@@ -75,13 +92,15 @@ double matrix::GetElement(size_t r, size_t c)
 
 int *  matrix::dim()
 {
-	int nrow = elements[0].size();
-	int ncol = elements.size();
+	int nrow = elements.size();
+	int ncol = elements[0].size();
 	dimArray[0] = nrow;
 	dimArray[1] = ncol;
 
 	return dimArray;
 }
+
+
 
 matrix matrix::RowSwap(size_t r1, size_t r2)
 {
@@ -191,6 +210,8 @@ matrix matrix::Transpose()
 }
 
 
+
+
 matrix MMultiply(matrix & A, matrix & B)
 {
 
@@ -218,6 +239,38 @@ matrix MMultiply(matrix & A, matrix & B)
 	return P;
 
 }
+
+matrix MConcat(matrix & A, matrix &B)
+{
+	if (A.d1 != B.d1)
+	{
+		error("in MConcat number of rows must be equal\n");
+	}
+
+	matrix C(A.d2, A.d2 + B.d2);
+
+	for (size_t n = 0; n< A.d1; n++)
+	{
+		size_t j = 0, k = 0;
+		for (size_t i = 0; i < (A.d2 + B.d2); i++)
+		{
+			if (i < A.d2)
+			{
+				C.elements[n][i] = A.elements[n][j];
+				j++;
+			}
+			else{
+				C.elements[n][i] = B.elements[n][k];
+				k++;
+			}
+		}
+		j = k = 0;		
+	}
+	
+	return C;
+}
+
+
 
 
 matrix MAdd(matrix & A, matrix & B)

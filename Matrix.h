@@ -16,6 +16,7 @@ public:
 	~matrix();
 	matrix(matrix & M);
 	matrix(int x, int y);
+	matrix operator=(const matrix &);
 	void display();
 	void SetElement(size_t r, size_t c, double value);
 	double GetElement(size_t r, size_t c);
@@ -26,8 +27,10 @@ public:
 	double detGaussElim();
 	matrix ScalarMultiply(double s);
 	matrix Transpose();
+	
 
 	friend matrix MMultiply(matrix &, matrix &);
+	friend matrix MConcat(matrix &, matrix &);
 	friend matrix MAdd(matrix &, matrix &);
 
 };
